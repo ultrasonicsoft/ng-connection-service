@@ -1,7 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
+  <h1>Internet connection status</h1>
+
+  <h3>Try to disconnect and reconnect your internet connection and observe the live status</h3>
+  <br>
   <h1>
     You are
-    <p [ngStyle]="{'color':isConnected?'green':'red'}"> {{ status }}! </p>
+    <span [ngStyle]="{'color':isConnected?'green':'red'}"> {{ status }}! </span>
   </h1>
+
 </div>

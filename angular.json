@@ -121,6 +121,46 @@
           }
         }
       }
+    },
+    "connection-service": {
+      "root": "projects/connection-service",
+      "sourceRoot": "projects/connection-service/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/connection-service/tsconfig.lib.json",
+            "project": "projects/connection-service/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/connection-service/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/connection-service/src/test.ts",
+            "tsConfig": "projects/connection-service/tsconfig.spec.json",
+            "karmaConfig": "projects/connection-service/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/connection-service/tsconfig.lib.json",
+              "projects/connection-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-connection-monitor"

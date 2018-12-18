@@ -1,4 +1,4 @@
-# Internet Connection Monitoring Service (Angular v6)
+# Internet Connection Monitoring Service (Angular v7)
 
 > Detects whether browser has an active internet connection or not in Angular application. 
 

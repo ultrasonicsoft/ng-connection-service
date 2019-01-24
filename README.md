@@ -17,7 +17,7 @@ npm install ng-connection-service --save
 
 ```ts
 import { Component } from '@angular/core';
-import { ConnectionService } from 'connection-service';
+import { ConnectionService } from 'ng-connection-service';
 
 @Component({
   selector: 'app-root',

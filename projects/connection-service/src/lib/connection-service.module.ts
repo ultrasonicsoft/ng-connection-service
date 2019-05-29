@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { ConnectionService } from './connection-service.service';
+import {NgModule} from '@angular/core';
+import {ConnectionService} from './connection-service.service';
 
 @NgModule({
-  imports: [
-  ],
-  providers:[ConnectionService]
+  imports: [],
+  providers: [ConnectionService]
 })
-export class ConnectionServiceModule { }
+export class ConnectionServiceModule {
+}

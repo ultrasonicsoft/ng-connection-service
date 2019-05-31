@@ -4,9 +4,11 @@
 
   <h3>Try to disconnect and reconnect your internet connection and observe the live status</h3>
   <br>
-  <h1>
-    You are
-    <span [ngStyle]="{'color':isConnected?'green':'red'}"> {{ status }}! </span>
-  </h1>
+  <app-status-check></app-status-check>
+
+  <app-status-check></app-status-check>
+
+  <button *ngIf="!heartBeatState" (click)="setHeartBeatState(true)">Enable HeartBeat Check</button>
+  <button *ngIf="heartBeatState" (click)="setHeartBeatState(false)">Disable HeartBeat Check</button>
 
 </div>

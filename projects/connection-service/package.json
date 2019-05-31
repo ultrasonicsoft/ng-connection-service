@@ -1,10 +1,7 @@
 {
   "name": "ng-connection-service",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Detects active internet connection in Angular application.",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ultrasonicsoft/ng-connection-service"
@@ -24,7 +21,8 @@
   },
   "homepage": "https://github.com/ultrasonicsoft/ng-connection-service#readme",
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "lodash": ">=4",
+    "@angular/common": ">=7",
+    "@angular/core": ">=7"
   }
 }

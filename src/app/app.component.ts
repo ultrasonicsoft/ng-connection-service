@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ConnectionService } from 'ng-connection-service';
+import {Component} from '@angular/core';
+import {ConnectionService} from 'ng-connection-service';
 
 @Component({
   selector: 'app-root',
@@ -7,18 +7,14 @@ import { ConnectionService } from 'ng-connection-service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  status = 'ONLINE';
-  isConnected = true;
+  heartBeatState;
 
   constructor(private connectionService: ConnectionService) {
-    this.connectionService.monitor().subscribe(isConnected => {
-      this.isConnected = isConnected;
-      if (this.isConnected) {
-        this.status = "ONLINE";
-      }
-      else {
-        this.status = "OFFLINE";
-      }
-    })
+    this.heartBeatState = this.connectionService.options.enableHeartbeat;
+  }
+
+  setHeartBeatState(state: boolean) {
+    this.heartBeatState = state;
+    this.connectionService.updateOptions({enableHeartbeat: state});
   }
 }

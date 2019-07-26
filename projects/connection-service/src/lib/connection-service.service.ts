@@ -1,8 +1,14 @@
-import {EventEmitter, Inject, Injectable, InjectionToken, OnDestroy, Optional} from '@angular/core';
-import {fromEvent, Observable, Subscription, timer} from 'rxjs';
-import {debounceTime, delay, retryWhen, startWith, switchMap, tap} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
-import * as _ from 'lodash';
+import { HttpClient } from '@angular/common/http';
+import {
+  EventEmitter,
+  Inject,
+  Injectable,
+  InjectionToken,
+  OnDestroy,
+  Optional
+} from '@angular/core';
+import { fromEvent, Observable, Subscription, timer } from 'rxjs';
+import { debounceTime, delay, retryWhen, startWith, switchMap, tap } from 'rxjs/operators';
 
 /**
  * Instance of this interface is used to report current connection status.
@@ -43,13 +49,14 @@ export interface ConnectionServiceOptions {
    * HTTP method used for requesting heartbeat Url. Default is 'head'.
    */
   requestMethod?: 'get' | 'post' | 'head' | 'options';
-
 }
 
 /**
  * InjectionToken for specifing ConnectionService options.
  */
-export const ConnectionServiceOptionsToken: InjectionToken<ConnectionServiceOptions> = new InjectionToken('ConnectionServiceOptionsToken');
+export const ConnectionServiceOptionsToken: InjectionToken<
+  ConnectionServiceOptions
+> = new InjectionToken('ConnectionServiceOptionsToken');
 
 @Injectable({
   providedIn: 'root'
@@ -79,26 +86,32 @@ export class ConnectionService implements OnDestroy {
    * You should use "updateOptions" function.
    */
   get options(): ConnectionServiceOptions {
-    return _.clone(this.serviceOptions);
+    return Object.assign(this.serviceOptions);
   }
 
-  constructor(private http: HttpClient, @Inject(ConnectionServiceOptionsToken) @Optional() options: ConnectionServiceOptions) {
-    this.serviceOptions = _.defaults({}, options, ConnectionService.DEFAULT_OPTIONS);
+  constructor(
+    private http: HttpClient,
+    @Inject(ConnectionServiceOptionsToken) @Optional() options: ConnectionServiceOptions
+  ) {
+    this.serviceOptions = Object.assign({}, options, ConnectionService.DEFAULT_OPTIONS);
 
     this.checkNetworkState();
     this.checkInternetState();
   }
 
   private checkInternetState() {
-
-    if (!_.isNil(this.httpSubscription)) {
+    if (this.httpSubscription !== undefined) {
       this.httpSubscription.unsubscribe();
     }
 
     if (this.serviceOptions.enableHeartbeat) {
       this.httpSubscription = timer(0, this.serviceOptions.heartbeatInterval)
         .pipe(
-          switchMap(() => this.http[this.serviceOptions.requestMethod](this.serviceOptions.heartbeatUrl, {responseType: 'text'})),
+          switchMap(() =>
+            this.http[this.serviceOptions.requestMethod](this.serviceOptions.heartbeatUrl, {
+              responseType: 'text'
+            })
+          ),
           retryWhen(errors =>
             errors.pipe(
               // log error message
@@ -145,8 +158,7 @@ export class ConnectionService implements OnDestroy {
       this.offlineSubscription.unsubscribe();
       this.onlineSubscription.unsubscribe();
       this.httpSubscription.unsubscribe();
-    } catch (e) {
-    }
+    } catch (e) {}
   }
 
   /**
@@ -155,15 +167,12 @@ export class ConnectionService implements OnDestroy {
    * @param reportCurrentState Report current state when initial subscription. Default is "true"
    */
   monitor(reportCurrentState = true): Observable<ConnectionState> {
-    return reportCurrentState ?
-      this.stateChangeEventEmitter.pipe(
-        debounceTime(300),
-        startWith(this.currentState),
-      )
-      :
-      this.stateChangeEventEmitter.pipe(
-        debounceTime(300)
-      );
+    return reportCurrentState
+      ? this.stateChangeEventEmitter.pipe(
+          debounceTime(300),
+          startWith(this.currentState)
+        )
+      : this.stateChangeEventEmitter.pipe(debounceTime(300));
   }
 
   /**
@@ -172,8 +181,7 @@ export class ConnectionService implements OnDestroy {
    * @param options Partial option values.
    */
   updateOptions(options: Partial<ConnectionServiceOptions>) {
-    this.serviceOptions = _.defaults({}, options, this.serviceOptions);
+    this.serviceOptions = Object.assign({}, options, this.serviceOptions);
     this.checkInternetState();
   }
-
 }

@@ -12,7 +12,9 @@
     "postinstall": "npm run build_lib",
     "build_lib": "ng build ng-connection-service",
     "npm_pack": "cd dist/ng-connection-service && npm pack",
-    "package": "npm run build_lib && npm run npm_pack"
+    "package": "npm run build_lib && npm run npm_pack",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -28,7 +30,8 @@
     "core-js": "^2.5.0",
     "rxjs": "^6.5.2",
     "zone.js": "^0.8.29",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.9",
@@ -54,5 +57,6 @@
     "tslib": "^1.7.1",
     "tslint": "^5.16.0",
     "typescript": "3.2.4"
-  }
+  },
+  "snyk": true
 }

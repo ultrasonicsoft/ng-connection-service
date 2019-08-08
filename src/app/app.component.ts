@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {ConnectionService} from 'ng-connection-service';
+import { Component } from '@angular/core';
+import { ConnectionService } from 'ng-connection-service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +15,6 @@ export class AppComponent {
 
   setHeartBeatState(state: boolean) {
     this.heartBeatState = state;
-    this.connectionService.updateOptions({enableHeartbeat: state});
+    this.connectionService.updateOptions({ enableHeartbeat: state });
   }
 }

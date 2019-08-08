@@ -18,8 +18,8 @@ import { StatusCheckComponent } from './components/status-check/status-check.com
     {
       provide: ConnectionServiceOptionsToken,
       useValue: <ConnectionServiceOptions>{
-        // enableHeartbeat: false,
-        // heartbeatUrl: '/assets/ping.json',
+        // enableHeartbeat: true,
+        // heartbeatUrl: '/api/v1/conexion/test',
         // requestMethod: 'get',
         // heartbeatInterval: 3000
       }

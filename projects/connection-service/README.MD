@@ -1,6 +1,6 @@
-# Internet Connection Monitoring Service (Angular v6)
+# Internet Connection Monitoring Service (Angular v8)
 
-> Detects whether browser has an active internet connection or not in Angular application. 
+> Detects whether browser has an active internet connection or not in Angular application.
 
 ## Install
 

@@ -1,8 +1,8 @@
 import {EventEmitter, Inject, Injectable, InjectionToken, OnDestroy, Optional} from '@angular/core';
 import {fromEvent, Observable, Subscription, timer} from 'rxjs';
 import {debounceTime, delay, retryWhen, startWith, switchMap, tap} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
 import * as _ from 'lodash';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * Instance of this interface is used to report current connection status.

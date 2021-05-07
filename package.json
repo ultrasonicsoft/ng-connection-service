@@ -30,7 +30,7 @@
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1",
     "core-js": "^3.6.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "snyk": "^1.278.0"
   },
   "devDependencies": {

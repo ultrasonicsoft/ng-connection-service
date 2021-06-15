@@ -1,61 +1,29 @@
 {
-  "name": "ng-connection-monitor",
+  "name": "ng-connection-service",
   "version": "3.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "prestart": "npm run build_lib",
-    "postinstall": "npm run build_lib",
-    "build_lib": "ng build ng-connection-service",
-    "npm_pack": "cd dist/ng-connection-service && npm pack",
-    "package": "npm run build_lib && npm run npm_pack",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+  "description": "Detects active internet connection in Angular application.",
+  "main": "connection.service.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ultrasonicsoft/ng-connection-service"
   },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "~8.2.14",
-    "@angular/common": "~8.2.14",
-    "@angular/compiler": "~8.2.14",
-    "@angular/core": "~8.2.14",
-    "@angular/forms": "~8.2.14",
-    "@angular/platform-browser": "~8.2.14",
-    "@angular/platform-browser-dynamic": "~8.2.14",
-    "@angular/router": "~8.2.14",
-    "rxjs": "~6.4.0",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.9.1",
-    "core-js": "^3.6.3",
-    "lodash": "^4.17.15",
-    "snyk": "^1.278.0"
+  "keywords": [
+    "detect",
+    "internet",
+    "connection",
+    "angular",
+    "service",
+    "HTTP"
+  ],
+  "author": "Balram Chavan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ultrasonicsoft/ng-connection-service/issues"
   },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.22",
-    "@angular-devkit/build-ng-packagr": "^0.803.22",
-    "@angular/cli": "~8.3.22",
-    "@angular/compiler-cli": "~8.2.14",
-    "@angular/language-service": "~8.2.14",
-    "@types/jasmine": "~3.5.0",
-    "@types/jasminewd2": "~2.0.8",
-    "codelyzer": "^5.2.1",
-    "jasmine-core": "~3.5.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~4.4.1",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~2.1.1",
-    "karma-jasmine": "~3.1.0",
-    "karma-jasmine-html-reporter": "^1.5.1",
-    "protractor": "~5.4.2",
-    "ts-node": "~8.6.1",
-    "tslint": "~5.20.1",
-    "typescript": "~3.5.3",
-    "@types/node": "^13.1.6",
-    "ng-packagr": "^5.7.1",
-    "tsickle": "0.38.0"
-  },
-  "snyk": true
+  "homepage": "https://github.com/ultrasonicsoft/ng-connection-service#readme",
+  "peerDependencies": {
+    "lodash": ">=4",
+    "@angular/common": ">=7",
+    "@angular/core": ">=7"
+  }
 }

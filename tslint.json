@@ -3,6 +3,18 @@
     "node_modules/codelyzer"
   ],
   "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "lib",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "lib",
+      "kebab-case"
+    ],
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,

@@ -2,26 +2,29 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist",
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
       "es2017",
-      "dom"
+      "dom",
+      "es2015"
     ],
     "paths": {
       "ng-connection-service": [
-        "dist/ng-connection-service"
+        "dist"
       ],
       "ng-connection-service/*": [
-        "dist/ng-connection-service/*"
+        "dist/*"
       ]
     }
   }

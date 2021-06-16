@@ -1,29 +1,30 @@
 {
-  "name": "ng-connection-service",
-  "version": "3.0.0",
-  "description": "Detects active internet connection in Angular application.",
-  "main": "connection.service.js",
+  "name": "connection-service",
+  "version": "4.0.0",
+  "description": "Detects active internet connection.",
+  "main": "dist/connection.service.js",
+  "types": "dist/connection.service.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ultrasonicsoft/ng-connection-service"
+    "url": "https://github.com/Damotech/connection-service"
   },
   "keywords": [
     "detect",
     "internet",
     "connection",
-    "angular",
     "service",
     "HTTP"
   ],
-  "author": "Balram Chavan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ultrasonicsoft/ng-connection-service/issues"
+    "url": "https://github.com/Damotech/connection-service/issues"
   },
-  "homepage": "https://github.com/ultrasonicsoft/ng-connection-service#readme",
+  "homepage": "https://github.com/Damotech/connection-service#readme",
   "peerDependencies": {
-    "lodash": ">=4",
-    "@angular/common": ">=7",
-    "@angular/core": ">=7"
-  }
+    "lodash-es": "^4.17.21",
+    "rxjs": "^7.1.0"
+  },
+  "files": [
+    "/dist"
+  ]
 }

@@ -1,22 +1,6 @@
-import {
-  EventEmitter,
-  Inject,
-  Injectable,
-  InjectionToken,
-  OnDestroy,
-  Optional,
-} from "@angular/core";
-import { fromEvent, Observable, Subscription, timer } from "rxjs";
-import {
-  debounceTime,
-  delay,
-  retryWhen,
-  startWith,
-  switchMap,
-  tap,
-} from "rxjs/operators";
-import * as _ from "lodash";
-import { HttpClient } from "@angular/common/http";
+import { fromEvent, Observable, Subject, Subscription, timer } from "rxjs";
+import { debounceTime, startWith } from "rxjs/operators";
+import * as _ from "lodash-es";
 
 /**
  * Instance of this interface is used to report current connection status.
@@ -41,8 +25,8 @@ export interface ConnectionServiceOptions {
    */
   enableHeartbeat?: boolean;
   /**
-   * Url used for checking Internet connectivity, heartbeat system periodically makes "HEAD" requests to this URL to determine Internet
-   * connection status. Default value is "//internethealthtest.org".
+   * Url used for checking Internet connectivity, heartbeat system periodically makes a requests to this URL to determine Internet
+   * connection status. Default value is "https://google.com".
    */
   heartbeatUrl?: string;
   /**
@@ -53,31 +37,16 @@ export interface ConnectionServiceOptions {
    * Interval used to retry Internet connectivity checks when an error is detected (when no Internet connection). Default value is "1000".
    */
   heartbeatRetryInterval?: number;
-  /**
-   * HTTP method used for requesting heartbeat Url. Default is 'head'.
-   */
-  requestMethod?: "get" | "post" | "head" | "options";
 }
 
-/**
- * InjectionToken for specifing ConnectionService options.
- */
-export const ConnectionServiceOptionsToken: InjectionToken<ConnectionServiceOptions> =
-  new InjectionToken("ConnectionServiceOptionsToken");
-
-@Injectable({
-  providedIn: "root",
-})
-export class ConnectionService implements OnDestroy {
+export class ConnectionService {
   private static DEFAULT_OPTIONS: ConnectionServiceOptions = {
     enableHeartbeat: true,
-    heartbeatUrl: "//internethealthtest.org",
-    heartbeatInterval: 30000,
-    heartbeatRetryInterval: 1000,
-    requestMethod: "head",
+    heartbeatUrl: "https://google.com",
+    heartbeatInterval: 10000,
   };
 
-  private stateChangeEventEmitter = new EventEmitter<ConnectionState>();
+  private stateChangeEventEmitter = new Subject<ConnectionState>();
 
   private currentState: ConnectionState = {
     hasInternetAccess: false,
@@ -96,12 +65,7 @@ export class ConnectionService implements OnDestroy {
     return _.clone(this.serviceOptions);
   }
 
-  constructor(
-    private http: HttpClient,
-    @Inject(ConnectionServiceOptionsToken)
-    @Optional()
-    options: ConnectionServiceOptions
-  ) {
+  constructor(options?: ConnectionServiceOptions) {
     this.serviceOptions = _.defaults(
       {},
       options,
@@ -118,38 +82,25 @@ export class ConnectionService implements OnDestroy {
     }
 
     if (this.serviceOptions.enableHeartbeat) {
-      this.httpSubscription = timer(0, this.serviceOptions.heartbeatInterval)
-        .pipe(
-          switchMap(() =>
-            this.http[this.serviceOptions.requestMethod](
-              this.serviceOptions.heartbeatUrl,
-              { responseType: "text" }
-            )
-          ),
-          retryWhen((errors) =>
-            errors.pipe(
-              // log error message
-              tap((val) => {
-                console.error("Http error:", val);
-                this.currentState.hasInternetAccess = false;
-                this.emitEvent();
-              }),
-              // restart after 5 seconds
-              delay(this.serviceOptions.heartbeatRetryInterval)
-            )
-          )
-        )
-        .subscribe((result) => {
-          this.currentState.hasInternetAccess = true;
-          this.emitEvent();
-        });
+      this.httpSubscription = timer(
+        0,
+        this.serviceOptions.heartbeatInterval
+      ).subscribe(() => {
+        fetch(this.serviceOptions.heartbeatUrl, { mode: "no-cors" }).then(
+          (response) => {
+            this.currentState.hasInternetAccess = response.type === "opaque";
+            this.emitEvent();
+          }
+        );
+      });
     } else {
-      this.currentState.hasInternetAccess = false;
+      this.currentState.hasInternetAccess =
+        this.currentState.hasNetworkConnection;
       this.emitEvent();
     }
   }
 
-  private checkNetworkState() {
+  private checkNetworkState(): void {
     this.onlineSubscription = fromEvent(window, "online").subscribe(() => {
       this.currentState.hasNetworkConnection = true;
       this.checkInternetState();
@@ -158,13 +109,13 @@ export class ConnectionService implements OnDestroy {
 
     this.offlineSubscription = fromEvent(window, "offline").subscribe(() => {
       this.currentState.hasNetworkConnection = false;
-      this.checkInternetState();
+      this.currentState.hasInternetAccess = false;
       this.emitEvent();
     });
   }
 
-  private emitEvent() {
-    this.stateChangeEventEmitter.emit(this.currentState);
+  private emitEvent(): void {
+    this.stateChangeEventEmitter.next(this.currentState);
   }
 
   ngOnDestroy(): void {

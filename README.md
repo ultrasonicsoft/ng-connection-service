@@ -1,27 +1,123 @@
-# NgConectionServiceWorkspace
+# Internet Connection Monitoring Service (Angular v15)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
+> Detects whether browser has an active internet connection or not in Angular application. 
 
-## Development server
+## Install
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+You can get it on npm.
 
-## Code scaffolding
+```
+npm install ng-connection-service --save
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
 
-## Build
+1. Inject `ConnectionService` in Angular component's constructor.
+2. Subscribe to `monitor()` method to get push notification whenever internet connection status is changed.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```ts
+import { Component } from '@angular/core';
+import { ConnectionService } from 'ng-connection-service';
 
-## Running unit tests
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  hasNetworkConnection: boolean;
+  hasInternetAccess: boolean;
+  status: string;
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  constructor(private connectionService: ConnectionService) {
+    this.connectionService.monitor().subscribe(currentState => {
+      this.hasNetworkConnection = currentState.hasNetworkConnection;
+      this.hasInternetAccess = currentState.hasInternetAccess;
+      if (this.hasNetworkConnection && this.hasInternetAccess) {
+        this.status = 'ONLINE';
+      } else {
+        this.status = 'OFFLINE';
+      }
+    });
+  }
+}
 
-## Running end-to-end tests
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Configuration
 
-## Further help
+You can configure the service using `ConnectionServiceOptions` configuration variable. 
+Following options are available;
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```ts
+/**
+ * Instance of this interface could be used to configure "ConnectionService".
+ */
+export interface ConnectionServiceOptions {
+  /**
+   * Controls the Internet connectivity heartbeat system. Default value is 'true'.
+   */
+  enableHeartbeat?: boolean;
+  /**
+   * Url used for checking Internet connectivity, heartbeat system periodically makes "HEAD" requests to this URL to determine Internet
+   * connection status. Default value is "//internethealthtest.org".
+   */
+  heartbeatUrl?: string;
+  /**
+   * Interval used to check Internet connectivity specified in milliseconds. Default value is "30000".
+   */
+  heartbeatInterval?: number;
+  /**
+   * Interval used to retry Internet connectivity checks when an error is detected (when no Internet connection). Default value is "1000".
+   */
+  heartbeatRetryInterval?: number;
+  /**
+   * HTTP method used for requesting heartbeat Url. Default is 'head'.
+   */
+  requestMethod?: 'get' | 'post' | 'head' | 'options';
+
+}
+```
+
+You should define a provider for `ConnectionServiceOptionsToken` in your module as follows;
+
+```ts
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+
+import {AppComponent} from './app.component';
+import {ConnectionServiceModule, ConnectionServiceOptions, ConnectionServiceOptionsToken} from 'ng-connection-service';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    ConnectionServiceModule
+  ],
+  providers: [
+    {
+      provide: ConnectionServiceOptionsToken,
+      useValue: <ConnectionServiceOptions>{
+        enableHeartbeat: false,
+        heartbeatUrl: '/assets/ping.json',
+        requestMethod: 'get',
+        heartbeatInterval: 3000
+      }
+    }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}
+
+```
+
+## Demo
+
+[Working demo](https://ng-connection-service-demo.surge.sh/)
+
+## License
+
+[MIT License](https://github.com/ultrasonicsoft/ng-connection-service/blob/master/LICENSE) © Balram Chavan

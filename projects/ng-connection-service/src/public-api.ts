@@ -3,5 +3,4 @@
  */
 
 export * from './lib/ng-connection-service.service';
-export * from './lib/ng-connection-service.component';
 export * from './lib/ng-connection-service.module';

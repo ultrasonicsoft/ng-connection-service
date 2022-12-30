@@ -1,16 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { NgConnectionServiceComponent } from './ng-connection-service.component';
-
-
+import { ConnectionService } from './ng-connection-service.service';
 
 @NgModule({
-  declarations: [
-    NgConnectionServiceComponent
-  ],
-  imports: [
-  ],
-  exports: [
-    NgConnectionServiceComponent
-  ]
+  imports: [HttpClientModule],
+  providers: [ConnectionService]
 })
-export class NgConnectionServiceModule { }
+export class ConnectionServiceModule { }

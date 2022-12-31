@@ -1,10 +1,10 @@
-# Internet Connection Monitoring Service (Angular v10-v15)
+# Internet Connection Monitoring Service (Angular v9-v15)
 
 > Detects whether browser has an active internet connection or not in Angular application. 
 
 > Detects whether your API Server is running or not in Angular application. 
 
->> Note that, currently this library updated to support from Angular v10 till v15 and verified with demos. Meanwhile, for Angular 9 and earlier versions, try installing package with version 1.0.4 `npm i ng-connection-service@1.0.4`. Stay tuned for updates.
+>> Note that, this library is being updated to support most of the Angular versions. Currently, it supports Angular v9 till v15, and verified with demos. Meanwhile, for Angular 8 and earlier versions, try installing package with version 1.0.4 `npm i ng-connection-service@1.0.4`. Stay tuned for updates.
 
 
 ## Install
@@ -155,12 +155,13 @@ export class AppComponent implements OnInit, OnDestroy {
 ## Demos
 
 You can find demos in GitHub repository under directory `projects/demo/`.
-* Angular v10 Demo
-* Angular v11 Demo
-* Angular v12 Demo
-* Angular v13 Demo
-* Angular v14 Demo
-* Angular v15 Demo
+* [Angular v9 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v9)
+* [Angular v10 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v10)
+* [Angular v11 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v11)
+* [Angular v12 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v12)
+* [Angular v13 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v13)
+* [Angular v14 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v14)
+* [Angular v15 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v15)
 
 ## API
 

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ConnectionService } from './ng-connection-service.service';
+import { NgConnectionServiceService } from './ng-connection-service.service';
 
-describe('ConnectionService', () => {
-  let service: ConnectionService;
+describe('NgConnectionServiceService', () => {
+  let service: NgConnectionServiceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ConnectionService);
+    service = TestBed.inject(NgConnectionServiceService);
   });
 
   it('should be created', () => {

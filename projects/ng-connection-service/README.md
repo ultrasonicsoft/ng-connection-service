@@ -2,6 +2,11 @@
 
 > Detects whether browser has an active internet connection or not in Angular application. 
 
+> Detects whether your API Server is running or not in Angular application. 
+
+>> Note that, currently this library updated to v15 and verified with ng v15 demo. However, this library being updated for all major Angular version from v8 onward. Meanwhile, for Angular 8, and other version try installing package with version 1.0.4 `npm i ng-connection-service@1.0.4`. Stay tuned.
+
+
 ## Install
 
 You can get it on npm.
@@ -10,41 +15,144 @@ You can get it on npm.
 npm install ng-connection-service --save
 ```
 
-## Usage
+## Setup
 
-1. Inject `ConnectionService` in Angular component's constructor.
-2. Subscribe to `monitor()` method to get push notification whenever internet connection status is changed.
+*  Import `HttpClientModule` and `ConnectionServiceModule` into your application `AppModule`
 
 ```ts
-import { Component } from '@angular/core';
-import { ConnectionService } from 'ng-connection-service';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ConnectionServiceModule } from 'ng-connection-service';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    ConnectionServiceModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+```
+
+## Usage - Check only internet connection status
+* Inject `ConnectionService` in Angular component's constructor, subscribe to `monitor()` method.
+
+
+```ts
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ConnectionService, ConnectionServiceOptions, ConnectionState } from 'ng-connection-service';
+import { Subscription, tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  hasNetworkConnection: boolean;
-  hasInternetAccess: boolean;
-  status: string;
+export class AppComponent implements OnInit, OnDestroy {
+  title = 'demo';
+
+  status!: string;
+  currentState!: ConnectionState;
+  subscription = new Subscription();
 
   constructor(private connectionService: ConnectionService) {
-    this.connectionService.monitor().subscribe(currentState => {
-      this.hasNetworkConnection = currentState.hasNetworkConnection;
-      this.hasInternetAccess = currentState.hasInternetAccess;
-      if (this.hasNetworkConnection && this.hasInternetAccess) {
-        this.status = 'ONLINE';
-      } else {
-        this.status = 'OFFLINE';
-      }
-    });
+  }
+
+  ngOnInit(): void {
+    this.subscription.add(
+      this.connectionService.monitor(options).pipe(
+        tap((newState: ConnectionState) => {
+          this.currentState = newState;
+
+          if (this.currentState.hasNetworkConnection) {
+            this.status = 'ONLINE';
+          } else {
+            this.status = 'OFFLINE';
+          }
+        })
+      ).subscribe()
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
 
 ```
 
-## Configuration
+## Usage - Check YOUR API Server connection status
+
+* Inject `ConnectionService` in Angular component's constructor, subscribe to `monitor()` method. Here `hasInternetConnection` boolean property informs if given server URL passed via `heartbeatUrl` property is reachable or not.
+
+
+```ts
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ConnectionService, ConnectionServiceOptions, ConnectionState } from 'ng-connection-service';
+import { Subscription, tap } from 'rxjs';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements OnInit, OnDestroy {
+  title = 'demo';
+
+  status!: string;
+  currentState!: ConnectionState;
+  subscription = new Subscription();
+
+  constructor(private connectionService: ConnectionService) {
+  }
+
+  ngOnInit(): void {
+    const options: ConnectionServiceOptions = {
+      enableHeartbeat: false,
+      heartbeatUrl: 'https://localhost:4000',
+      heartbeatInterval: 2000
+    }
+    this.subscription.add(
+      this.connectionService.monitor(options).pipe(
+        tap((newState: ConnectionState) => {
+          this.currentState = newState;
+
+          if (this.currentState.hasNetworkConnection && this.currentState.hasInternetAccess) {
+            this.status = 'ONLINE';
+          } else {
+            this.status = 'OFFLINE';
+          }
+        })
+      ).subscribe()
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+}
+
+```
+
+* Note that we have passed configuration object to `monitor()` function to watch application server status.
+
+```ts
+ const options: ConnectionServiceOptions = {
+      enableHeartbeat: false,
+      heartbeatUrl: 'https://localhost:5000',
+      heartbeatInterval: 2000
+    }
+```
+
+## API
 
 You can configure the service using `ConnectionServiceOptions` configuration variable. 
 Following options are available;
@@ -77,41 +185,6 @@ export interface ConnectionServiceOptions {
   requestMethod?: 'get' | 'post' | 'head' | 'options';
 
 }
-```
-
-You should define a provider for `ConnectionServiceOptionsToken` in your module as follows;
-
-```ts
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
-import {AppComponent} from './app.component';
-import {ConnectionServiceModule, ConnectionServiceOptions, ConnectionServiceOptionsToken} from 'ng-connection-service';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    ConnectionServiceModule
-  ],
-  providers: [
-    {
-      provide: ConnectionServiceOptionsToken,
-      useValue: <ConnectionServiceOptions>{
-        enableHeartbeat: false,
-        heartbeatUrl: '/assets/ping.json',
-        requestMethod: 'get',
-        heartbeatInterval: 3000
-      }
-    }
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule {
-}
-
 ```
 
 ## Demo

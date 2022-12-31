@@ -1,5 +1,5 @@
-import { EventEmitter, Inject, Injectable, InjectionToken, OnDestroy, Optional } from '@angular/core';
-import { BehaviorSubject, catchError, debounce, debounceTime, delay, filter, from, fromEvent, interval, Observable, of, retryWhen, startWith, Subscription, switchMap, tap, timer } from 'rxjs';
+import { Inject, Injectable, InjectionToken, OnDestroy, Optional } from '@angular/core';
+import { BehaviorSubject, fromEvent, interval, Observable, Subscription, switchMap } from 'rxjs';
 // import * as _ from 'lodash';
 import { HttpClient } from '@angular/common/http';
 
@@ -69,7 +69,7 @@ export enum HTTP_REQUEST_METHODS {
 }
 
 export const DEFAULT_OPTIONS: ConnectionServiceOptions = {
-  enableHeartbeat: true,
+  enableHeartbeat: false,
   heartbeatUrl: DEFAULT_HEART_BEAT_URL,
   heartbeatInterval: DEFAULT_HEART_BEAT_INTERVAL,
   heartbeatRetryInterval: 1000,
@@ -93,9 +93,11 @@ export class ConnectionService implements OnDestroy {
     // TODO: Token useValue in providers not working.
     this.serviceOptions = { ...DEFAULT_OPTIONS, ...options };
     this.checkNetworkState();
-    this.checkInternetState();
-  }
 
+    if (this.serviceOptions.enableHeartbeat) {
+      this.checkInternetState();
+    }
+  }
 
   private checkNetworkState() {
     this.subscription.add(fromEvent(window, 'online').subscribe(() => {
@@ -172,8 +174,13 @@ export class ConnectionService implements OnDestroy {
  * function will not report current status of the connections when initially subscribed.
  * @param reportCurrentState Report current state when initial subscription. Default is "true"
  */
-  public monitor(reportCurrentState = true): Observable<ConnectionState> {
-    // return of(DEFAULT_CONNECTION_STATE)
+  public monitor(options?: ConnectionServiceOptions): Observable<ConnectionState> {
+    if (options) {
+      this.serviceOptions = { ...this.serviceOptions, ...options };
+    }
+    if(this.serviceOptions.enableHeartbeat) {
+      this.checkInternetState();
+    }
     return this.stateChanged$;
   }
 

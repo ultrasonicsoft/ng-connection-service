@@ -155,12 +155,12 @@ export class AppComponent implements OnInit, OnDestroy {
 ## Demos
 
 You can find demos in GitHub repository under directory `projects/demo/`.
-* Angular v10 Demo
-* Angular v11 Demo
-* Angular v12 Demo
-* Angular v13 Demo
-* Angular v14 Demo
-* Angular v15 Demo
+* [Angular v10 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v10)
+* [Angular v11 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v11)
+* [Angular v12 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v12)
+* [Angular v13 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v13)
+* [Angular v14 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v14)
+* [Angular v15 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v15)
 
 ## API
 

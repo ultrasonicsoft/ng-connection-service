@@ -1,10 +1,10 @@
-# Internet Connection Monitoring Service (Angular v10-v15)
+# Internet Connection Monitoring Service (Angular v9-v15)
 
 > Detects whether browser has an active internet connection or not in Angular application. 
 
 > Detects whether your API Server is running or not in Angular application. 
 
->> Note that, currently this library updated to support from Angular v10 till v15 and verified with demos. Meanwhile, for Angular 9 and earlier versions, try installing package with version 1.0.4 `npm i ng-connection-service@1.0.4`. Stay tuned for updates.
+>> Note that, currently this library updated to support from Angular v9 till v15 and verified with demos. Meanwhile, for Angular 8 and earlier versions, try installing package with version 1.0.4 `npm i ng-connection-service@1.0.4`. Stay tuned for updates.
 
 
 ## Install
@@ -155,6 +155,7 @@ export class AppComponent implements OnInit, OnDestroy {
 ## Demos
 
 You can find demos in GitHub repository under directory `projects/demo/`.
+* [Angular v9 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v9)
 * [Angular v10 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v10)
 * [Angular v11 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v11)
 * [Angular v12 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v12)

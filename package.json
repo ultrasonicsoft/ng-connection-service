@@ -23,14 +23,14 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1002.1",
+    "@angular-devkit/build-angular": "~15.0.4",
     "@angular/cli": "~10.2.1",
     "@angular/compiler-cli": "~10.2.4",
     "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^6.0.0",
-    "ng-packagr": "^10.1.0",
+    "ng-packagr": "^15.0.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.2"

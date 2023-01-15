@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "ng-connection-service": [
-        "dist/ng-connection-service/ng-connection-service",
-        "dist/ng-connection-service"
+      "ngx-angular-qrcode": [
+        "dist/ngx-angular-qrcode/ngx-angular-qrcode",
+        "dist/ngx-angular-qrcode"
       ]
     }
   },

@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-connection-service": {
+    "ngx-angular-qrcode": {
       "projectType": "library",
-      "root": "projects/ng-connection-service",
-      "sourceRoot": "projects/ng-connection-service/src",
+      "root": "projects/ngx-angular-qrcode",
+      "sourceRoot": "projects/ngx-angular-qrcode/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/ng-connection-service/tsconfig.lib.json",
-            "project": "projects/ng-connection-service/ng-package.json"
+            "tsConfig": "projects/ngx-angular-qrcode/tsconfig.lib.json",
+            "project": "projects/ngx-angular-qrcode/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng-connection-service/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-angular-qrcode/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ng-connection-service/src/test.ts",
-            "tsConfig": "projects/ng-connection-service/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-connection-service/karma.conf.js"
+            "main": "projects/ngx-angular-qrcode/src/test.ts",
+            "tsConfig": "projects/ngx-angular-qrcode/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-angular-qrcode/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ng-connection-service/tsconfig.lib.json",
-              "projects/ng-connection-service/tsconfig.spec.json"
+              "projects/ngx-angular-qrcode/tsconfig.lib.json",
+              "projects/ngx-angular-qrcode/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -43,5 +43,5 @@
         }
       }
     }},
-  "defaultProject": "ng-connection-service"
+  "defaultProject": "ngx-angular-qrcode"
 }

@@ -1,0 +1,43 @@
+{
+  "name": "ngx-angular-qrcode",
+  "version": "0.0.4",
+  "author": {
+    "name": "Balram Chavan",
+    "url": "https://balramchavan.com"
+  },
+  "description": "This library allow you to create beautiful QR Codes in Angular application.",
+  "displayName": "Angular QR Codes - Create beautiful QR Codes",
+  "keywords": [
+    "Angular",
+    "QR",
+    "Code",
+    "QRCode",
+    "Colorful",
+    "Gradient",
+    "round",
+    "circular",
+    "color",
+    "custom",
+    "new",
+    "create",
+    "generate",
+    "qrcodes"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ultrasonicsoft/ngx-angular-qrcode"
+  },
+  "homepage": "https://github.com/ultrasonicsoft/ngx-angular-qrcode",
+  "bugs": {
+    "url": "https://github.com/ultrasonicsoft/ngx-angular-qrcode/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=9",
+    "@angular/core": ">=9",
+    "qr-code-styling": "^1.6.0-rc.1"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  }
+}

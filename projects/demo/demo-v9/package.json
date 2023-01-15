@@ -1,5 +1,5 @@
 {
-  "name": "ngx-angular-qrcode-workspace-v9",
+  "name": "demo-v9",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -14,24 +14,21 @@
     "@angular/animations": "~9.1.13",
     "@angular/common": "~9.1.13",
     "@angular/compiler": "~9.1.13",
-    "@angular/core": "~9.1.13",
+    "@angular/core": "~11.0.5",
     "@angular/forms": "~9.1.13",
     "@angular/platform-browser": "~9.1.13",
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
-    "qr-code-styling": "^1.6.0-rc.1",
+    "ngx-angular-qrcode": "^0.0.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~15.0.4",
-    "@angular-devkit/build-ng-packagr": "~0.901.13",
+    "@angular-devkit/build-angular": "~0.901.13",
     "@angular/cli": "~9.1.13",
     "@angular/compiler-cli": "~9.1.13",
     "@types/node": "^12.11.1",
-    "codelyzer": "^5.1.2",
-    "ng-packagr": "^9.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"

@@ -1,5 +1,5 @@
 {
-  "name": "ng-connection-service-workspace-v9",
+  "name": "ngx-angular-qrcode-workspace-v9",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -19,12 +19,13 @@
     "@angular/platform-browser": "~9.1.13",
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
+    "qr-code-styling": "^1.6.0-rc.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.13",
+    "@angular-devkit/build-angular": "~15.0.4",
     "@angular-devkit/build-ng-packagr": "~0.901.13",
     "@angular/cli": "~9.1.13",
     "@angular/compiler-cli": "~9.1.13",

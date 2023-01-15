@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ConnectionServiceModule } from 'ng-connection-service';
+import { NgxAngularQrcodeModule } from 'ngx-angular-qrcode';
 
 @NgModule({
   declarations: [
@@ -11,8 +10,7 @@ import { ConnectionServiceModule } from 'ng-connection-service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    ConnectionServiceModule,
+    NgxAngularQrcodeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

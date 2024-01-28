@@ -10,7 +10,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ng-connection-service/tsconfig.lib.json",
             "project": "projects/ng-connection-service/ng-package.json"
@@ -28,20 +28,8 @@
             "tsConfig": "projects/ng-connection-service/tsconfig.spec.json",
             "karmaConfig": "projects/ng-connection-service/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ng-connection-service/tsconfig.lib.json",
-              "projects/ng-connection-service/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
-    }},
-  "defaultProject": "ng-connection-service"
+    }
+  }
 }

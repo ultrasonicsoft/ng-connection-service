@@ -27,10 +27,10 @@
   },
   "homepage": "https://github.com/ultrasonicsoft/ng-connection-service#readme",
   "peerDependencies": {
-    "@angular/common": ">=9",
-    "@angular/core": ">=9"
+    "@angular/common": ">=16",
+    "@angular/core": ">=16"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.0.0"
   }
 }

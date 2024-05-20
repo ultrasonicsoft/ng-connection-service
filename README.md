@@ -6,7 +6,7 @@
 ## Version support 
   | Version | Angular supported versions |
   |---------|-----------------|
-  | 13.0.0  | v16-v17   |
+  | 13.0.2  | v16-v17   |
   | 9.0.3   | v9-v15  |
   | 1.0.4   | <=v8    | 
 

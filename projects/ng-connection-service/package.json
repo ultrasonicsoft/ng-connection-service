@@ -1,6 +1,6 @@
 {
   "name": "ng-connection-service",
-  "version": "13.0.0",
+  "version": "13.0.2",
   "description": "Detects active internet connection, and API server status in Angular application.",
   "repository": {
     "type": "git",

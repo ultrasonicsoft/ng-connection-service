@@ -1,10 +1,20 @@
-# Internet Connection Monitoring Service (Angular v9-v15)
+# ng-connection service
 
-> Detects whether browser has an active internet connection or not in Angular application. 
+## Monitor active internet connection reactively in Angular and Ionic applications 
 
-> Detects whether your API Server is running or not in Angular application. 
+>  * Detects whether browser has an active internet connection or not in Angular application.  
+> * Detects whether your API Server is running or not in Angular application. 
+ 
+## Version support 
+  | Version | Angular supported versions |
+  |---------|-----------------|
+  | 13.0.0  | v16-v17   |
+  | 9.0.3   | v9-v15  |
+  | 1.0.4   | <=v8    | 
 
->> Note that, this library is being updated to support most of the Angular versions. Currently, it supports Angular v9 till v15, and verified with demos. Meanwhile, for Angular 8 and earlier versions, try installing package with version 1.0.4 `npm i ng-connection-service@1.0.4`. Stay tuned for updates.
+
+> **Note** This library is updated to support most of the Angular versions, Stay tuned for updates.
+
 
 
 ## Install
@@ -13,6 +23,12 @@ You can get it on npm.
 
 ```
 npm install ng-connection-service --save
+```
+
+You can get it on yarn.
+
+```
+yarn add ng-connection-service
 ```
 
 ## Setup
@@ -111,6 +127,9 @@ export class AppComponent implements OnInit, OnDestroy {
   currentState!: ConnectionState;
   subscription = new Subscription();
 
+  // Note: if you prefer inject()
+  // connectionService = inject(ConnectionService);
+
   constructor(private connectionService: ConnectionService) {
   }
 
@@ -162,6 +181,8 @@ You can find demos in GitHub repository under directory `projects/demo/`.
 * [Angular v13 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v13)
 * [Angular v14 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v14)
 * [Angular v15 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v15)
+* [Angular v16 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v16)
+* [Angular v17 Demo](https://github.com/ultrasonicsoft/ng-connection-service/tree/main/projects/demo/ng-connection-demo-v17)
 
 ## API
 
@@ -201,6 +222,14 @@ export interface ConnectionServiceOptions {
 ## Demo
 
 [Working demo](https://ng-connection-service-demo.surge.sh/)
+
+## Contributors
+
+Thank you to the following contributors who have helped improve this project by submitting pull requests:
+
+- [@anandkushwaha064](https://github.com/anandkushwaha064): Upgraded library to v16-17
+- [@yildiraymeric](https://github.com/yildiraymeric): Upgraded library to v7
+
 
 ## License
 

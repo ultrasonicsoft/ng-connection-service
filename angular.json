@@ -10,7 +10,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ng-connection-service/tsconfig.lib.json",
             "project": "projects/ng-connection-service/ng-package.json"
@@ -43,5 +43,8 @@
         }
       }
     }},
-  "defaultProject": "ng-connection-service"
+  "defaultProject": "ng-connection-service",
+  "cli": {
+    "analytics": "8d8a7a2b-7b98-478d-9954-fcd9f9dea51c"
+  }
 }

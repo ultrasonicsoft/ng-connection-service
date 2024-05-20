@@ -1,6 +1,6 @@
 {
   "name": "ng-connection-service",
-  "version": "9.0.3",
+  "version": "13.0.0",
   "description": "Detects active internet connection, and API server status in Angular application.",
   "repository": {
     "type": "git",
@@ -27,10 +27,10 @@
   },
   "homepage": "https://github.com/ultrasonicsoft/ng-connection-service#readme",
   "peerDependencies": {
-    "@angular/common": ">=9",
-    "@angular/core": ">=9"
+    "@angular/common": ">=16",
+    "@angular/core": ">=16"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.3.0"
   }
 }

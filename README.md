@@ -1,10 +1,20 @@
-# Internet Connection Monitoring Service (Angular v9-v15)
+
+
+
+# Internet Connection Monitoring Service
+
+## Version support 
+  | Version | Angular supported versions |
+  |---------|-----------------|
+  | 13.0.0  | v16-v17   |
+  | 9.0.3   | v9-v15  |
+  | 1.0.4   | <=v8    | 
 
 > Detects whether browser has an active internet connection or not in Angular application. 
 
 > Detects whether your API Server is running or not in Angular application. 
 
->> Note that, this library is being updated to support most of the Angular versions. Currently, it supports Angular v9 till v15, and verified with demos. Meanwhile, for Angular 8 and earlier versions, try installing package with version 1.0.4 `npm i ng-connection-service@1.0.4`. Stay tuned for updates.
+**Note** This library is updated to support most of the Angular versions, Stay tuned for updates.
 
 
 ## Install
